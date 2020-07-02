@@ -16,7 +16,7 @@
         $m = round($m,1);
         $sit = 'situacao';
         ($m>=7)?$situacao = 'Aprovado':$situacao='Reprovado';
-        echo "A média do aluno é $m e ele está $situacao.";
+        echo "A média do aluno é $m e ele está <strong>$situacao</strong>.";
 
     ?>
 
