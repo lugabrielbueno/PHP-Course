@@ -20,24 +20,28 @@
         <input type="submit" value='Cadastrar' id='submit'>
 
         <?php
-            $titulo = $_GET['titulo'];
-            $ano = $_GET['ano_lancamento'];
-            $paginas = $_GET['paginas'];
-            $autorPrimeiro = $_GET['autorPrimeiro'];
-            $autorUltimo = $_GET['autorUltimo'];
-            $estoque = $_GET['estoque'];
 
+            //função que conecta no banco de dados e executa o comando
             function connect($command){
                 $conn = new PDO("mysql:dbname=book_shop; host=localhost","root","anarquia99");
                 $stmt = $conn->prepare($command);
                 $stmt->execute();
             }
 
-            if ((!isset($_GET['titulo'])) and (!isset($_GET['ano_lancamento'])) and (!isset($_GET['paginas'])) and (!isset($_GET['autorPrimeiro'])) and (!isset($_GET['autorUltimo'])) and (!isset($_GET['estoque']))) {
-                echo 'ok';
-                echo "<h4 style='margin-top:50px;'>Preencha corretamente os campos acima!</h4>";
+            //esquivando dos NOTICES e WARNINGS
+            if ((!isset($_GET['titulo']) or (empty($_GET['titulo']))) and (!isset($_GET['ano_lancamento'])or (empty($_GET['ano_lancamento']))) and (!isset($_GET['paginas'])or (empty($_GET['paginas']))) and (!isset($_GET['autorPrimeiro'])or (empty($_GET['autorPrimeiro'])))  and (!isset($_GET['autorUltimo'])or (empty($_GET['autorUltimo'])))  and (!isset($_GET['estoque']))or (empty($_GET['estoque']))) {
+
+                echo "<h4 style='margin-top:70px;'>Preencha corretamente os campos acima!</h4>";
             }else {
+                $titulo = $_GET['titulo'];
+                $ano = $_GET['ano_lancamento'];
+                $paginas = $_GET['paginas'];
+                $autorPrimeiro = $_GET['autorPrimeiro'];
+                $autorUltimo = $_GET['autorUltimo'];
+                $estoque = $_GET['estoque'];
+
                 connect("INSERT INTO books (title,author_fname,author_lname,pages,stock_quantity,released_year) VALUES ('$titulo','$autorPrimeiro','$autorUltimo',$paginas,$estoque,$ano)");
+                
                 echo "<h3 style='margin-top:70px;'>Livro cadastrado.</h3>";
 
             }
