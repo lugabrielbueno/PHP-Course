@@ -1,15 +1,21 @@
 <?php
 
 class Conta {
-    public $nome;
+    private $nome;
     public $agencia;
-    public $status;
-    public $tipo;
+    private $status;
+    protected $tipo;
     public $banco;
     public $conta;
     private $saldo;
 
-
+    public function __construct(){
+        $this->setStatus(false);
+        $this->saldo = 50;
+    }
+    public function getSaldo(){
+        echo 'R$'.number_format($this->saldo,2);
+    }
     public function setTipo($tip) {
         $this->tipo = $tip;
     }
@@ -21,11 +27,13 @@ class Conta {
             echo 'Permissão negada, essa conta possui saldo.';
         }elseif ($bool == false and $this->saldo == 0){
             $this->status = $bool;
+            echo 'Conta fechada com sucesso';
         }elseif ($bool == true) {
             if ($this->status == true){
-                echo 'Conta já está aberta';
+                echo 'Conta já está aberta.';
             }else {
-                $this->saldo = 50;
+                $this->status = $bool;
+                'A conta foi aberta com sucesso';
             }
             
         }
@@ -59,12 +67,11 @@ class Conta {
     }
 
     public function saque($valor) {
-        if ($this->status == true) {
-            $this->saldo -= $valor;
-            echo 'Saque realizado com sucesso';
-            echo 'Valor: R$'.number_format($valor,2);
+        if ($this->status == false or $this->saldo < $valor) {
+            echo 'Impossível realizar essa operação. (cheque o saldo ou status da conta)';
         }else {
-            echo 'Conta fechada!';
+            $this->saldo -= $valor;
+            echo "Saque realizado com sucesso. Valor R$". number_format($valor,2);
         }
     }
     public function deposito($valor) {
@@ -79,7 +86,15 @@ class Conta {
 }
 
     $gabriel = new Conta;
-    $gabriel->setNome('Lucas Gabriel Bueno');
+    $gabriel->setNome('Lucas Gabriel Bueno'); echo '<br>';
+    $gabriel->setTipo('CC');echo '<br>';
+    $gabriel->setAgencia(0120);  echo '<br>';
+    $gabriel->setStatus(true);
+    $gabriel->getStatus();echo '<br>';
+    $gabriel->deposito(650.00);echo '<br>';
+    $gabriel->saque(800);echo '<br>';
+    $gabriel->saque(400.00); echo '<br>';
+    $gabriel->getSaldo();echo '<br>';
 
 
 
