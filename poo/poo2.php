@@ -17,10 +17,26 @@ class Conta {
         echo $this->tipo;
     }
     public function setStatus($bool) {
-        $this->status = $bool;
+        if ($bool == false and $this->saldo != 0){
+            echo 'Permissão negada, essa conta possui saldo.';
+        }elseif ($bool == false and $this->saldo == 0){
+            $this->status = $bool;
+        }elseif ($bool == true) {
+            if ($this->status == true){
+                echo 'Conta já está aberta';
+            }else {
+                $this->saldo = 50;
+            }
+            
+        }
+
     }
     public function getStatus(){
-        echo $this->status;
+        if ($this->status == true){
+            echo 'Aberta';
+        }else {
+            echo 'Fechada';
+        }
     }
     public function setAgencia($ag) {
         $this->agencia = $ag;
@@ -43,20 +59,29 @@ class Conta {
     }
 
     public function saque($valor) {
-        $this->saldo -= $valor;
-        echo 'Saque realizado com sucesso';
-        echo 'Valor: '.$valor;
+        if ($this->status == true) {
+            $this->saldo -= $valor;
+            echo 'Saque realizado com sucesso';
+            echo 'Valor: R$'.number_format($valor,2);
+        }else {
+            echo 'Conta fechada!';
+        }
     }
     public function deposito($valor) {
-        $this->saldo += $valor;
-        echo 'Depósito realizado com sucesso';
-        echo 'Valor: '.$valor;
+        if ($this->status == true){
+            $this->saldo += $valor;
+            echo 'Depósito realizado com sucesso ';
+            echo 'Valor: R$'.number_format($valor,2);
+        }else {
+            echo 'Conta fechada!';
+        }
     }
 }
 
     $gabriel = new Conta;
     $gabriel->setNome('Lucas Gabriel Bueno');
-    $gabriel->getNome();
+
+
 
 
 ?>
