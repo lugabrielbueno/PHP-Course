@@ -6,7 +6,7 @@ class ControleRemoto implements Controlador {
     private $tocando;
 
     //metodos especiais
-    private function __construct() {
+    public function __construct() {
         $this->volume = 50;
         $this->ligado = false;
         $this->tocando = false;
@@ -36,6 +36,7 @@ class ControleRemoto implements Controlador {
         $this->setLigado(false);
     }
     public function abrirMenu(){
+        echo "<------------- MENU -------------> <br>";
         echo "<br>Está ligado ? ". ($this->getLigado()?"SIM":"NÃO");
         echo "<br>Está tocando ? ". ($this->getTocando()?"SIM":"NÃO");
         echo "<br>Volume: " . $this->getVolume();
