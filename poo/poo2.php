@@ -10,7 +10,7 @@ class Conta {
     private $saldo;
 
     public function __construct(){
-        $this->setStatus(false);
+        $this->status = false;
         $this->saldo = 50;
     }
     public function getSaldo(){
@@ -25,9 +25,11 @@ class Conta {
     public function setStatus($bool) {
         if ($bool == false and $this->saldo != 0){
             echo 'Permissão negada, essa conta possui saldo.';
-        }elseif ($bool == false and $this->saldo == 0){
+        }elseif ($bool == false and $this->saldo == 0 and $this->status!= false){
             $this->status = $bool;
             echo 'Conta fechada com sucesso';
+        }elseif ($bool == false and $this->status == false) {
+            echo 'A conta já está fechada.';
         }elseif ($bool == true) {
             if ($this->status == true){
                 echo 'Conta já está aberta.';
@@ -87,9 +89,12 @@ class Conta {
 
     $gabriel = new Conta;
     $gabriel->setNome('Lucas Gabriel Bueno'); echo '<br>';
+    $gabriel->getNome();echo '<br>';
     $gabriel->setTipo('CC');echo '<br>';
-    $gabriel->setAgencia(0120);  echo '<br>';
-    $gabriel->setStatus(true);
+    $gabriel->getTipo();echo '<br>';
+    $gabriel->setAgencia('0120');  echo '<br>';
+    $gabriel->getAgencia();echo '<br>';
+    $gabriel->setStatus(true);echo '<br>';
     $gabriel->getStatus();echo '<br>';
     $gabriel->deposito(650.00);echo '<br>';
     $gabriel->saque(800);echo '<br>';
