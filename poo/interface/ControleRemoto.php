@@ -50,11 +50,15 @@ class ControleRemoto implements Controlador {
     public function maisVolume(){
         if ($this->getLigado) {
             $this->setVolume($this->getVolume() + 2);
+        }else {
+            echo "<p>ERRO! Não posso aumentar o volume!";
         }
     }
     public function menosVolume(){
         if ($this->getLigado) {
             $this->setVolume($this->getVolume() - 2);
+        }else {
+            echo "<p>ERRO! Não posso diminuir o volume!";
         }
     }
     public function ligarMudo(){
