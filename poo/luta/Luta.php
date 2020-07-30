@@ -24,17 +24,23 @@ class Luta {
             $vencedor = rand(0,2);
             switch($vencedor){
                 case 0:
-                    echo "Empatou";
+                    echo "<br><-------------------------------------------------->";
+                    echo "<br>Empatou";
                     $this->desafiante->empatarLuta();
                     $this->desafiado->empatarLuta();
+                    break;
                 case 1:
-                    echo $this->desafiado->getNome()." Ganhou";
+                    echo "<br><-------------------------------------------------->";
+                    echo "<br>".$this->desafiado->getNome()." Ganhou";
                     $this->desafiado->ganharLuta();
                     $this->desafiante->perderLuta();
+                    break;
                 case 2:
-                    echo $this->desafiante->getNome()." Ganhou";
+                    echo "<br><-------------------------------------------------->";
+                    echo "<br>".$this->desafiante->getNome()." Ganhou";
                     $this->desafiante->ganharLuta();
                     $this->desafiado->perderLuta();
+                    break;
             }
         }else{
             echo "A luta não pode acontecer";

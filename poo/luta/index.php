@@ -8,7 +8,7 @@
 <body>
     
     <?php
-
+        require_once("Luta.php");
         require_once("Lutador.php");
 
         $l = array();
@@ -20,9 +20,9 @@
         $l[4] = new Lutador("UFO Cobol","Brasil",37,1.70,119.3,5,4,3);
         $l[5] = new Lutador("Nerd Art","EUA",30,1.81,105.7,12,2,4);
 
-        $l[1]->apresentar();
-        $l[1]->perderLuta();
-        $l[1]->apresentar();
+        $UECE01 = new Luta();
+        $UECE01->marcarLuta($l[0],$l[1]);
+        $UECE01->lutar();
 
     ?>
 </body>

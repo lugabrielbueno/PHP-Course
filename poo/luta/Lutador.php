@@ -100,6 +100,7 @@ class Lutador {
         return $this->empates;
     }
     public function apresentar() {
+        echo "<br><-------------------------------------------------->";
         echo "<br>CHEGOU A HORA! O Lutador ".$this->getNome().".";
         echo "<br> Veio diretamente do(a) ".$this->getNacionalidade();
         echo "<br> tem ".$this->getIdade()." anos";
