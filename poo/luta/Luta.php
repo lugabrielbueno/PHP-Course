@@ -6,6 +6,25 @@ class Luta {
     private $rounds;
     private $aprovada;
 
+
+    public function setDesafiado($desafiado){
+        $this->desafiado = $desafiado;
+    }
+    public function getDesafiado(){
+        return $this->desafiado;
+    }
+    public function setDesafiante($desafiante){
+        $this->desafiante = $desafiante;
+    }
+    public function getDesafiante(){
+        return $this->desafiante;
+    }
+    public function setRounds($rounds){
+        $this->rounds = $rounds;
+    }
+    public function getRounds(){
+        return $this->rounds;
+    }
     public function marcarLuta($l1,$l2){
         if(($l1->getCategoria() == $l2->getCategoria()) and ($l1!=$l2)){
             $this->aprovada = true;
